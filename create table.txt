@@ -1,0 +1,48 @@
+SELECT * FROM DEPOSIT FOR JSON AUTO;
+
+use bank_info
+
+db.createCollection("deposit")
+
+[{"ACTNO":101,"CNAME":"ANIL","BNAME":"VRCE","AMOUNT":1000.00,"ADATE":"1995-03-01T00:00:00"},
+{"ACTNO":102,"CNAME":"SUNIL","BNAME":"AJNI","AMOUNT":5000.00,"ADATE":"1996-01-04T00:00:00"},
+{"ACTNO":103,"CNAME":"MEHUL","BNAME":"KAROLBAGH","AMOUNT":3500.00,"ADATE":"1995-11-17T00:00:00"},
+{"ACTNO":104,"CNAME":"MADHURI","BNAME":"CHANDI","AMOUNT":1200.00,"ADATE":"1995-12-17T00:00:00"},
+{"ACTNO":105,"CNAME":"PRAMOD","BNAME":"M.GROAD","AMOUNT":3000.00,"ADATE":"1996-03-27T00:00:00"},
+{"ACTNO":106,"CNAME":"SANDIP","BNAME":"ANDHRI","AMOUNT":2000.00,"ADATE":"1996-03-31T00:00:00"},
+{"ACTNO":107,"CNAME":"SHIVANI","BNAME":"VIRAR","AMOUNT":1000.00,"ADATE":"1995-09-05T00:00:00"},
+{"ACTNO":108,"CNAME":"KRANTI","BNAME":"NEHRU PLACE","AMOUNT":3000.00,"ADATE":"1995-07-02T00:00:00"}]
+
+--Q1--
+db.deposit.find()
+--Q2--
+db.deposit.find().pretty()
+--Q3--
+db.deposit.findOne()
+--Q4--
+db.deposit.insertOne({"ACTNO":109,"CNAME":"MINU","BNAME":"POWAI","AMOUNT":7000.00,"ADATE":"1995-08-10T00:00:00"})
+--Q5--
+db.deposit.insertMany([{"ACTNO":110,"CNAME":"MITALI","BNAME":"ANDHERI","AMOUNT":4500.00,"ADATE":"1995-09-04T00:00:00"},
+{"ACTNO":111,"CNAME":"RAJIV","BNAME":"NEHRU PLACE","AMOUNT":7000.00,"ADATE":"1999-10-02T00:00:00"}])
+--Q6--
+db.Deposit.find({}, { CNAME: 1, BNAME: 1, AMOUNT: 1 })
+--Q7--
+db.Deposit.find().sort({ CNAME: 1 })
+--Q8--
+db.Deposit.find().sort({ BNAME: -1 })
+--Q8--
+db.Deposit.find().sort({ BNAME: -1 })
+--Q8--
+db.Deposit.find().sort({ ACTNO: 1, AMOUNT: -1 })
+--Q8--
+db.Deposit.find().limit(2)
+--Q8--
+db.Deposit.find().skip(2).limit(1)
+--Q8--
+db.Deposit.find().skip(5).limit(2)
+--Q8--
+db.Deposit.countDocuments()
+--Q8--
+--Q8--
+--Q8--
+--Q8--

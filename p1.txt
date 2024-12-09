@@ -1,0 +1,47 @@
+db.students.insertMany
+(
+  "students": [
+    {
+      "Rno": 101,
+      "Name": "Raju",
+      "Branch": "CE",
+    },
+    {
+      "Rno": 102,
+      "Name": "Amit",
+      "Branch": "CE",
+    },
+    {
+      "Rno": 103,
+      "Name": "Sanjay",
+      "Branch": "ME",
+    },
+    {
+      "Rno": 104,
+      "Name": "Neha",
+      "Branch": "EC",
+    },
+    {
+      "Rno": 105,
+      "Name": "Meera",
+      "Branch": "EE",
+    },
+    {
+      "Rno": 106,
+      "Name": "Mahesh",
+      "Branch": "ME",
+    }
+  ]
+)
+Q1
+db.students.aggregate([
+{
+	$lookup:{from:"result",localField:"Rno",foreignField:"Rno",as: "studentdata"}
+}
+])
+
+Q2
+
+
+
+
