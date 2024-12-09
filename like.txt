@@ -1,0 +1,31 @@
+1 name contains 'n' 			(ha)
+2 name is of min 5 character
+3 name is of exact 4 characters
+4 name starts with 'n'
+5 name ends with 'n'
+6 name has 2nd character as 'i'
+7 name starts with 's' and name ends with 'n'
+8 name do not starts with 'n'
+9 name is of exact 5 characters and 2nd character as 'o'
+10 name is of min 4 characters and 2nd character as 'e'
+11 name starts with 'n' or 's'
+12 name starts with 'a' to 'n'
+13 name is of min 4 characters and starts with 'n'
+================================
+1 db.student.find({FirstName:/n/})
+ db.student.find({FirstName:/n/i})
+ db.student.find({FirstName: {$regex: "n"}})
+ db.student.find({FirstName: {$regex: "n", $options: "i"}})
+2 db.student.find({FirstName: {$regex: ".....", $options: "i"}})
+3 db.student.find({FirstName: {$regex: "^....$", $options: "i"}})
+4 db.student.find({FirstName: {$regex: "^n", $options: "i"}})
+5 db.student.find({FirstName: {$regex: "n$", $options: "i"}})
+6 db.student.find({FirstName: {$regex: "^.o", $options: "i"}})
+7 db.student.find({FirstName: {$regex: "^s.*n$", $options: "i"}})
+8 db.student.find({FirstName: {$not: {$regex: "^n", $options: "i"}}})
+db.student.find({FirstName: {$not: /^n/i}})
+9 db.student.find({FirstName: /^.o...$/i})
+10 db.student.find({FirstName: /^.e.{3,}$/i})
+11 db.student.find({FirstName: /^[ns]/i})
+12 db.student.find({FirstName: /^[a-n]/i})
+13 db.student.find({FirstName: /^n..../i})

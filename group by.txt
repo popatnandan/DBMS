@@ -1,0 +1,20 @@
+1. count no of documents in a collection
+2. Count department wise number of employees in a collection
+3. display department wise sum of salary in a collection (max, min, avg)
+4. Count CE department number of employees in a collection
+5. Count department wise number of employees and display dept having more than one emp.
+6. Count department wise number of employees in a collection and sort based on no of employee.
+7. _id name change
+8. Count CE and IT department number of employees in a collection
+
+=========================================
+1. db.emp.find().count()
+2. db.emp.aggregate([{$group:{_id:"$Dept", empcount:{$sum:1}}}])
+3. db.emp.aggregate([{$group:{_id:"$Dept", empcount:{$sum:"$Salary"}}}])
+4. db.emp.aggregate([{$match: {Dept: 'CE'}},{$group:{_id:"$Dept", empcount:{$sum:1}}}])
+5. db.emp.aggregate([{$group:{_id:"$Dept", empcount:{$sum: 1}}},{$match: {empcount: {$gt: 1}}}])
+6. db.emp.aggregate([{$group:{_id:"$Dept", empcount:{$sum: 1}}},{$sort: {empcount: 1}} ])
+7. db.emp.aggregate([{$group:{_id:"$Dept", empcount:{$sum: 1}}}, 
+	{$project: {Branch: "$_id", _id: 0, empcount: 1}}])
+8. db.emp.aggregate([{$match: {Dept: {$in: ['CE', 'IT']}}},
+	{$group:{_id:"$Dept", empcount:{$sum:1}}}])
